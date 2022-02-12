@@ -1,40 +1,19 @@
-import classNames from 'classnames'
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BaseLayout } from './layouts/BaseLayout'
+import { ElementsListLayout } from './layouts/ElementsListLayout'
+import { ElementDetail } from './pages/ElementDetail'
+import { Index } from './pages/Index'
 
-export const App: FC = () => {
-  const [state, setState] = useState<'init' | 'pending' | 'done' | 'error'>(
-    'init',
-  )
-  const [text, setText] = useState<string>('')
-
-  useEffect(() => {
-    fetchData()
-    async function fetchData(): Promise<void> {
-      setState('pending')
-      try {
-        const result = await fetch(`http://localhost:4080/api`)
-        const resultText = await result.text()
-        setText(resultText)
-        setState('done')
-      } catch (error) {
-        setState('error')
-      }
-    }
-  }, [])
-
-  return (
-    <div
-      className={classNames(
-        'm-4',
-        'shadow-md rounded',
-        'p-4',
-        'bg-white',
-        'font-sans font-semibold text-blue-600',
-      )}
-    >
-      <div>env: {import.meta.env.MODE}</div>
-      <div>Status: {state}</div>
-      <div>Result: {text}</div>
-    </div>
-  )
-}
+export const App: FC = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route element={<BaseLayout />}>
+        <Route element={<ElementsListLayout />}>
+          <Route path="/" element={<Index />} />
+          <Route path="/element/:elementName" element={<ElementDetail />} />
+        </Route>
+      </Route>
+    </Routes>
+  </BrowserRouter>
+)

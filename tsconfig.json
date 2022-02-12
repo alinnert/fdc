@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
     "strict": true,
-    "target": "ES2019",
-    "module": "ESNext",
+    "target": "ESNext",
+    "module": "ES2020",
     "moduleResolution": "Node",
-    "lib": ["ES2021"],
-    "allowSyntheticDefaultImports": true
+    "lib": ["ESNext"],
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "noImplicitAny": true,
+    "jsx": "react-jsx"
   },
-  "include": ["server"]
+  "include": ["server", "ui", "global"]
 }
