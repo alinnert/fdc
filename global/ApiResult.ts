@@ -1,3 +1,4 @@
+import { ElementDetailResult } from './ElementDetailResult'
 import { ElementsResult } from './ElementsResult'
 
 export type ApiSuccessResult<Data> = {
@@ -13,3 +14,4 @@ export type ApiErrorResult = {
 export type ApiResult<Data> = ApiSuccessResult<Data> | ApiErrorResult
 
 export type ElementsApiResult = ApiResult<ElementsResult>
+export type ElementDetailApiResult = ApiResult<ElementDetailResult>

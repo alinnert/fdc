@@ -1,41 +1,40 @@
 import { RequestHandler } from 'express'
-import { spawn } from 'node:child_process'
-import { EOL } from 'node:os'
 import { ElementsResult } from '../../global/ElementsResult'
-import { folderArg } from '../args'
 import { apiSuccessResult } from '../lib/apiResult'
+import { grep } from '../lib/grep'
 
-export const getElements: RequestHandler = (req, res) => {
+export const getElements: RequestHandler = async (req, res) => {
   const result: ElementsResult = {}
 
-  const rg = spawn('rg', [
-    // Options
-    '--line-number',
-    '--glob',
-    '**/*.xsd',
-    // Pattern
-    '<.+:element.+name=".+".*>',
-    // Path
-    folderArg,
-  ])
+  try {
+    await grep({
+      glob: '**/*.xsd',
+      pattern: '<[A-Za-z]+?:element[^>]+?name=".+?".*?>',
 
-  rg.stdout.on('data', (data: Buffer) => {
-    const output = data.toString().split(EOL)
+      onBegin(message) {
+        const filename = message.data.path.text
+        result[filename] = []
+      },
 
-    for (const outputLine of output) {
-      const rgMatch = outputLine.match(/^(.*):([0-9]+):(.*name="([^"]+)".*)$/)
-      if (rgMatch === null) continue
-      const [, file, line, , elementName] = rgMatch
+      onMatch(message) {
+        const lineNumber = message.data.line_number
+        const elementNameMatch = message.data.lines.text.match(
+          /<[A-Za-z]*:element.+?name=['"](.*?)['"]/,
+        )
+        if (elementNameMatch === null) return
+        const elementName = elementNameMatch[1]
+        const filename = message.data.path.text
+        result[filename].push({ lineNumber, elementName })
+      },
 
-      if (result[file] === undefined) {
-        result[file] = []
-      }
+      onStderrData(data) {
+        res.status(500).write(data)
+      },
+    })
+  } catch (error) {
+    res.end()
+    return
+  }
 
-      result[file].push({ line, elementName })
-    }
-  })
-
-  rg.on('close', () => {
-    res.send(apiSuccessResult(result))
-  })
+  res.send(apiSuccessResult(result))
 }

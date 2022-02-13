@@ -17,7 +17,6 @@ export const ElementsList: FC = () => {
     item: ElementsResultItem,
     event: MouseEvent<HTMLDivElement>,
   ): void {
-    console.log(item.elementName)
     navigate(`/element/${item.elementName}`)
   }
 

@@ -1,2 +1,6 @@
-export type ElementsResultItem = { line: string; elementName: string }
+export type ElementsResultItem = {
+  lineNumber: number
+  elementName: string
+}
+
 export type ElementsResult = Record<string, ElementsResultItem[]>
