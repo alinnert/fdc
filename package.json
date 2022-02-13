@@ -1,5 +1,5 @@
 {
-  "name": "fdc",
+  "name": "@alinnert/fdc",
   "version": "1.0.0",
   "description": "Fonto Dev Companion",
   "main": "dist/fdc",
