@@ -1,5 +1,5 @@
 export function endpoint(endpoint:string): string {
   return import.meta.env.MODE === 'production'
-        ? endpoint
+        ? `/${endpoint}`
         : `http://localhost:4080/${endpoint}`
 }
