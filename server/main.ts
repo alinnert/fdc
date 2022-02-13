@@ -12,7 +12,7 @@ applyRoutes(server)
 server.listen(portArg, () => {
   console.log(
     `
-  fdth server running
+  Fonto Dev Companion server running
 
   > Address: http://localhost:${portArg}/
   > Folder:  ${folderArg}

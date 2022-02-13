@@ -1,10 +1,10 @@
 {
-  "name": "fdth",
+  "name": "fdc",
   "version": "1.0.0",
-  "description": "Fonto Development Tools Helpers",
-  "main": "dist/fdth",
+  "description": "Fonto Dev Companion",
+  "main": "dist/fdc",
   "bin": {
-    "fdth": "./dist/fdth"
+    "fdc": "./dist/fdc"
   },
   "engines": {
     "node": ">=14.0"
@@ -12,10 +12,10 @@
   "scripts": {
     "start": "npm-run-all --parallel start:*",
     "start:ui": "vite",
-    "start:server": "npm run build:server && cross-env NODE_ENV=development node ./dist/fdth",
+    "start:server": "npm run build:server && cross-env NODE_ENV=development node ./dist/fdc",
     "build": "npm-run-all build:*",
     "build:ui": "vite build",
-    "build:server": "esbuild server/main.ts --bundle --platform=node --target=node10.4 --external:./node_modules/* --outfile=./dist/fdth"
+    "build:server": "esbuild server/main.ts --bundle --platform=node --target=node10.4 --external:./node_modules/* --outfile=./dist/fdc"
   },
   "keywords": [],
   "author": "",
