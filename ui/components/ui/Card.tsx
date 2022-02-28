@@ -1,7 +1,15 @@
 import { FC } from 'react'
 
-export const Card: FC = ({ children }) => {
+type Props = {
+  className?: string
+}
+
+export const Card: FC<Props> = ({ children, className }) => {
   return (
-    <div className="relative rounded-md bg-white shadow-md">{children}</div>
+    <div
+      className={`rounded-md bg-white shadow-md ${className ?? ''}`}
+    >
+      {children}
+    </div>
   )
 }

@@ -1,7 +1,7 @@
-import { FC } from 'react'
+import { FC, ReactElement } from 'react'
 
 interface Props {
-  title?: string
+  title?: ReactElement
 }
 
 export const ToolbarContainer: FC<Props> = ({ children, title }) => {
@@ -13,7 +13,7 @@ export const ToolbarContainer: FC<Props> = ({ children, title }) => {
         ) : null}
       </div>
 
-      <div className="overflow-auto grid">{children}</div>
+      <div className="grid overflow-auto">{children}</div>
     </div>
   )
 }

@@ -8,7 +8,7 @@ export const ElementsListLayout: FC = () => {
       <Suspense fallback={<div>Loading elements...</div>}>
         <ElementsList />
       </Suspense>
-
+      
       <Outlet />
     </div>
   )

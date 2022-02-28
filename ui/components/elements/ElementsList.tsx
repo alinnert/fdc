@@ -21,7 +21,7 @@ export const ElementsList: FC = () => {
   }
 
   return (
-    <ToolbarContainer title="Elements">
+    <ToolbarContainer title={<>All elements</>}>
       {elements.status === 'ok' ? (
         <div className="flex flex-col gap-y-4 p-4">
           {Object.entries(elements.data).map(([filename, results], index) => (

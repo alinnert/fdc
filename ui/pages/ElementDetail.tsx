@@ -1,15 +1,15 @@
 import { FC, Suspense, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import { ElementDetailData } from '../components/elementDetail/ElementDetailData'
-import { Card } from '../components/ui/Card'
+import { ElementDetailTitle } from '../components/elementDetail/ElementDetailTitle'
 import { ToolbarContainer } from '../components/ui/ToolbarContainer'
 import { elementNameState } from '../states/elementDetailStates'
 
 export const ElementDetail: FC = ({}) => {
   const params = useParams()
 
-  const [elementName, setElementName] = useRecoilState(elementNameState)
+  const setElementName = useSetRecoilState(elementNameState)
 
   useEffect(() => {
     setElementName(params.elementName ?? null)
@@ -20,13 +20,17 @@ export const ElementDetail: FC = ({}) => {
   }, [params.elementName, setElementName])
 
   return (
-    <ToolbarContainer title={`<${elementName}>`}>
-      <div className="grid self-stretch p-4">
-        <Card>
-          <Suspense fallback={<div>Loading...</div>}>
-            <ElementDetailData />
-          </Suspense>
-        </Card>
+    <ToolbarContainer
+      title={
+        <Suspense fallback="Loading...">
+          <ElementDetailTitle />
+        </Suspense>
+      }
+    >
+      <div className="grid self-stretch relative">
+        <Suspense fallback="Loading...">
+          <ElementDetailData />
+        </Suspense>
       </div>
     </ToolbarContainer>
   )
