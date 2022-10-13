@@ -1,11 +1,10 @@
-import { FC, MouseEvent, useEffect } from 'react'
+import { FC, MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { ElementsResultItem } from '../../../global/ElementsResult'
 import {
   filteredElementsCountState,
   filteredElementsState,
-  flatFilteredElementsState,
 } from '../../states/filterStates'
 import { Card } from '../ui/Card'
 import { EmptyIndicator } from '../ui/EmptyIndicator'
@@ -16,12 +15,7 @@ import { ElementsListItem } from './ElementsListItem'
 export const ElementsList: FC = () => {
   const navigate = useNavigate()
   const elements = useRecoilValue(filteredElementsState)
-  const flatFilteredElements = useRecoilValue(flatFilteredElementsState)
   const filteredElementsCount = useRecoilValue(filteredElementsCountState)
-
-  useEffect(() => {
-    console.log(flatFilteredElements)
-  }, [flatFilteredElements])
 
   function handleItemClick(
     item: ElementsResultItem,
@@ -61,7 +55,7 @@ export const ElementsList: FC = () => {
           ))}
 
           {Object.keys(elements.data).length === 0 ? (
-            <EmptyIndicator text="No elements found" />
+            <EmptyIndicator content="No elements found" />
           ) : null}
         </div>
       ) : (

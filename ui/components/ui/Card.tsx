@@ -1,11 +1,15 @@
-import { FC } from 'react'
+import { FC, PropsWithChildren } from 'react'
 
 type Props = {
   className?: string
   title?: string
 }
 
-export const Card: FC<Props> = ({ children, className, title }) => {
+export const Card: FC<PropsWithChildren<Props>> = ({
+  children,
+  className,
+  title,
+}) => {
   return (
     <div className={`rounded-md bg-white shadow-md ${className ?? ''}`}>
       {title !== undefined ? (

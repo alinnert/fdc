@@ -1,15 +1,22 @@
 import { StrictMode } from 'react'
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { RecoilRoot } from 'recoil'
 import { App } from './App'
 
-console.log(import.meta.env.MODE)
+const container = document.getElementById('app')
 
-render(
-  <StrictMode>
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
-  </StrictMode>,
-  document.getElementById('app'),
-)
+if (container !== null) {
+  render(container)
+}
+
+function render(container: HTMLElement): void {
+  const root = createRoot(container)
+
+  root.render(
+    <StrictMode>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
+    </StrictMode>,
+  )
+}

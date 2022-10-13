@@ -1,9 +1,16 @@
-import { FC } from 'react'
+import { FC, ReactElement, ReactNode } from 'react'
 
 interface Props {
-  text: string
+  content?: ReactNode
+  icon?: ReactElement
 }
 
-export const EmptyIndicator: FC<Props> = ({ text }) => {
-  return <div className="grid h-full items-center justify-center">{text}</div>
+export const EmptyIndicator: FC<Props> = ({ content, icon }) => {
+  return (
+    <div className="grid h-full grid-rows-[1fr,auto,auto,1fr] items-center justify-center">
+      <div></div>
+      <div className="mb-2 flex justify-center text-gray-400">{icon}</div>
+      <div className="text-gray-600 text-lg">{content}</div>
+    </div>
+  )
 }
