@@ -1,4 +1,5 @@
-import { FC, useMemo } from 'react'
+import { FC } from 'react'
+import { usePathSegments } from './usePathSegments'
 
 interface Props {
   name: string
@@ -6,16 +7,7 @@ interface Props {
 }
 
 export const Filename: FC<Props> = ({ name, additionalData }) => {
-  const separator = useMemo(() => {
-    return name.indexOf('/') !== -1 ? '/' : '\\'
-  }, [name])
-
-  const [path, filename] = useMemo<[string, string]>(() => {
-    const segments = name.split(separator)
-    const filename = segments.pop() ?? ''
-    const path = segments.join(separator)
-    return [path, filename]
-  }, [name, separator])
+  const { path, filename } = usePathSegments(name)
 
   return (
     <>

@@ -14,7 +14,7 @@ export const getElementByName: RequestHandler = async (req, res) => {
   try {
     await grep({
       glob: '**/configureSx*.js',
-      pattern: `configureAs[A-Za-z]+[\\s]*\\(.*?sxModule.*?,.*?['"]self::${elementName}[^'^"]*?['"]`,
+      pattern: `configureAs[A-Za-z]+[\\s]*\\([\\s]*sxModule[\\s]*,[\\s]*['"]self::${elementName}[^a-zA-Z-]`,
 
       onMatch(message) {
         const match = message.data.lines.text.match(/configureAs(.+?)\(/)
