@@ -14,19 +14,22 @@ export const FamilyConfiguration: FC<Props> = ({ familyConfig }) => {
     <div className="my-2 grid grid-cols-[1fr,3fr]">
       <div
         className={classNames(
-          'px-4 font-semibold',
+          'flex items-center gap-x-1 px-4 font-semibold',
           familyConfig.familyType === 'SheetFrame'
-            ? 'text-pink-700'
-            : 'text-cyan-700',
+            ? 'text-teal-500'
+            : 'text-teal-700',
         )}
       >
         {familyConfig.familyType}
       </div>
 
       <div className="col-start-1 col-end-3 px-4 pb-4 text-sm">
-        <div>{path}</div>
+        <div className="text-gray-600">{path}</div>
         <div>
-          <span className="font-semibold">{filename}</span>: {familyConfig.line}
+          <span className="font-semibold">{filename}:</span>{' '}
+          <span className="font-semibold text-pink-700">
+            {familyConfig.line}
+          </span>
         </div>
       </div>
     </div>

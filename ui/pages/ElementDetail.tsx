@@ -1,8 +1,7 @@
 import { FC, Suspense, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { ElementDetailData } from '../components/elementDetail/ElementDetailData'
-import { ElementDetailTitle } from '../components/elementDetail/ElementDetailTitle'
 import { ToolbarContainer } from '../components/ui/ToolbarContainer'
 import { elementNameState } from '../states/elementDetailStates'
 
@@ -10,6 +9,7 @@ export const ElementDetail: FC = ({}) => {
   const navigate = useNavigate()
   const params = useParams()
 
+  const elementName = useRecoilValue(elementNameState)
   const setElementName = useSetRecoilState(elementNameState)
 
   useEffect(() => {
@@ -28,12 +28,14 @@ export const ElementDetail: FC = ({}) => {
     <ToolbarContainer
       title={
         <Suspense fallback="Loading...">
-          <ElementDetailTitle />
+          <span key="element name" className="">
+            &lt;{elementName ?? '-'}&gt;
+          </span>
         </Suspense>
       }
       onClose={handleClose}
     >
-      <div className="grid self-stretch relative">
+      <div className="relative grid self-stretch">
         <Suspense fallback="Loading...">
           <ElementDetailData />
         </Suspense>
