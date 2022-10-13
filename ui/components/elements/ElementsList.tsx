@@ -1,8 +1,12 @@
-import { FC, MouseEvent, useMemo } from 'react'
+import { FC, MouseEvent, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { ElementsResultItem } from '../../../global/ElementsResult'
-import { filteredElementsState } from '../../states/filterStates'
+import {
+  filteredElementsCountState,
+  filteredElementsState,
+  flatFilteredElementsState,
+} from '../../states/filterStates'
 import { Card } from '../ui/Card'
 import { EmptyIndicator } from '../ui/EmptyIndicator'
 import { Filename } from '../ui/Filename'
@@ -10,13 +14,14 @@ import { ToolbarContainer } from '../ui/ToolbarContainer'
 import { ElementsListItem } from './ElementsListItem'
 
 export const ElementsList: FC = () => {
-  const elements = useRecoilValue(filteredElementsState)
   const navigate = useNavigate()
+  const elements = useRecoilValue(filteredElementsState)
+  const flatFilteredElements = useRecoilValue(flatFilteredElementsState)
+  const filteredElementsCount = useRecoilValue(filteredElementsCountState)
 
-  const elementsCount = useMemo<number>(() => {
-    if (elements.status !== 'ok') return NaN
-    return Object.values(elements.data).flat().length
-  }, [elements])
+  useEffect(() => {
+    console.log(flatFilteredElements)
+  }, [flatFilteredElements])
 
   function handleItemClick(
     item: ElementsResultItem,
@@ -29,12 +34,8 @@ export const ElementsList: FC = () => {
     <ToolbarContainer
       title={
         <>
-          All elements
-          {!isNaN(elementsCount)
-            ? ` (${elementsCount} ${
-                elementsCount === 1 ? 'element' : 'elements'
-              })`
-            : ''}
+          {filteredElementsCount > 0 ? `${filteredElementsCount} ` : ''}
+          {filteredElementsCount === 1 ? 'element' : 'elements'}
         </>
       }
     >

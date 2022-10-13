@@ -43,3 +43,28 @@ export const filteredElementsState = selector<ElementsApiResult>({
     return { status: 'ok', data: result }
   },
 })
+
+export const flatFilteredElementsState = selector<ElementsResultItem[]>({
+  key: 'flatFilteredElements',
+  get({ get }) {
+    const filteredElements = get(filteredElementsState)
+    if (filteredElements.status !== 'ok') return []
+    return Object.values(filteredElements.data).flat()
+  },
+})
+
+export const filteredElementsCountState = selector<number>({
+  key: 'filteredElementsCount',
+  get({ get }) {
+    const flatFilteredElements = get(flatFilteredElementsState)
+    return flatFilteredElements.length
+  },
+})
+
+export const firstFilteredElementState = selector<ElementsResultItem>({
+  key: 'firstFilteredElement',
+  get({ get }) {
+    const flatFilteredElements = get(flatFilteredElementsState)
+    return flatFilteredElements[0]
+  },
+})
