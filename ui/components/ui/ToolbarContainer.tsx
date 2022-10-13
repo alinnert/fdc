@@ -1,7 +1,7 @@
-import { FC, ReactElement } from 'react'
+import { FC, ReactNode } from 'react'
 
 interface Props {
-  title?: ReactElement
+  title?: ReactNode
 }
 
 export const ToolbarContainer: FC<Props> = ({ children, title }) => {
@@ -9,7 +9,7 @@ export const ToolbarContainer: FC<Props> = ({ children, title }) => {
     <div className="grid grid-rows-[auto,1fr] overflow-hidden">
       <div>
         {title !== undefined ? (
-          <div className="px-8 py-4 text-lg font-semibold">{title}</div>
+          <div className="p-4 text-lg font-semibold">{title}</div>
         ) : null}
       </div>
 

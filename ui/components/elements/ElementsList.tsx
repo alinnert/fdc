@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from 'react'
+import { FC, MouseEvent, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { ElementsResultItem } from '../../../global/ElementsResult'
@@ -13,6 +13,11 @@ export const ElementsList: FC = () => {
   const elements = useRecoilValue(filteredElementsState)
   const navigate = useNavigate()
 
+  const elementsCount = useMemo<number>(() => {
+    if (elements.status !== 'ok') return NaN
+    return Object.values(elements.data).flat().length
+  }, [elements])
+
   function handleItemClick(
     item: ElementsResultItem,
     event: MouseEvent<HTMLDivElement>,
@@ -21,7 +26,18 @@ export const ElementsList: FC = () => {
   }
 
   return (
-    <ToolbarContainer title={<>All elements</>}>
+    <ToolbarContainer
+      title={
+        <>
+          All elements
+          {!isNaN(elementsCount)
+            ? ` (${elementsCount} ${
+                elementsCount === 1 ? 'element' : 'elements'
+              })`
+            : ''}
+        </>
+      }
+    >
       {elements.status === 'ok' ? (
         <div className="flex flex-col gap-y-4 p-4">
           {Object.entries(elements.data).map(([filename, results], index) => (
