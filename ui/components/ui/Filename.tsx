@@ -1,25 +1,46 @@
+import classNames from 'classnames'
 import { FC } from 'react'
-import { usePathSegments } from './usePathSegments'
 
 interface Props {
-  name: string
+  path: string
+  filename: string
+  lineNumber?: number
+  highlight?: boolean
   additionalData?: string
 }
 
-export const Filename: FC<Props> = ({ name, additionalData }) => {
-  const { path, filename } = usePathSegments(name)
-
+export const Filename: FC<Props> = ({
+  path,
+  filename,
+  lineNumber,
+  highlight = false,
+  additionalData,
+}) => {
   return (
-    <>
-      <div className="mb-1 text-sm font-semibold text-gray-500">{path}</div>
+    <div className="font-mono">
+      <div className="mb-1 text-xs text-gray-600">{path}</div>
+      <div className="grid grid-cols-[1fr,auto] items-center">
+        <div>
+          <span
+            className={classNames('font-semibold', {
+              'text-rose-700': highlight,
+              'text-sm': !highlight,
+            })}
+          >
+            {filename}
+          </span>
 
-      <div className="grid grid-cols-[1fr,auto]">
-        <div className="font-bold text-pink-700">{filename}</div>
+          {lineNumber !== undefined ? (
+            <span className="font-semibold text-gray-400">:{lineNumber}</span>
+          ) : null}
+        </div>
 
         {additionalData !== undefined ? (
-          <div className="font-semibold text-gray-600">{additionalData}</div>
+          <div className="font-sans text-sm font-semibold">
+            {additionalData}
+          </div>
         ) : null}
       </div>
-    </>
+    </div>
   )
 }

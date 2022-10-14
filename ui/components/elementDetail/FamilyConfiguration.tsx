@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { FC } from 'react'
 import { FamilyConfigItem } from '../../../global/ElementDetailResult'
+import { Filename } from '../ui/Filename'
 import { usePathSegments } from '../ui/usePathSegments'
 
 type Props = {
@@ -11,26 +12,39 @@ export const FamilyConfiguration: FC<Props> = ({ familyConfig }) => {
   const { path, filename } = usePathSegments(familyConfig.filename)
 
   return (
-    <div className="my-2 grid grid-cols-[1fr,3fr]">
+    <div className="my-2">
       <div
         className={classNames(
-          'flex items-center gap-x-1 px-4 font-semibold',
+          'mb-1 flex items-center gap-x-1 px-4 font-semibold',
           familyConfig.familyType === 'SheetFrame'
-            ? 'text-teal-500'
+            ? 'text-sky-700'
             : 'text-teal-700',
         )}
       >
         {familyConfig.familyType}
+
+        {familyConfig.familyType === 'SheetFrame' ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="h-5 w-5"
+          >
+            <path
+              fillRule="evenodd"
+              d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5zm2.25 8.5a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0 3a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"
+              clipRule="evenodd"
+            />
+          </svg>
+        ) : null}
       </div>
 
       <div className="col-start-1 col-end-3 px-4 pb-4 text-sm">
-        <div className="text-gray-600">{path}</div>
-        <div>
-          <span className="font-semibold">{filename}:</span>{' '}
-          <span className="font-semibold text-pink-700">
-            {familyConfig.line}
-          </span>
-        </div>
+        <Filename
+          path={path}
+          filename={filename}
+          lineNumber={familyConfig.line}
+        />
       </div>
     </div>
   )

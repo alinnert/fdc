@@ -1,0 +1,21 @@
+{
+  "name": "Fonto Dev Companion",
+  "short_name": "FDC",
+  "lang": "en-US",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#9f1239",
+  "background_color": "#ffffff",
+  "icon": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ]
+}

@@ -27,16 +27,16 @@ export const ElementDetail: FC = ({}) => {
   return (
     <ToolbarContainer
       title={
-        <Suspense fallback="Loading...">
-          <span key="element name" className="">
-            &lt;{elementName ?? '-'}&gt;
-          </span>
-        </Suspense>
+        <span key="element name" className="">
+          &lt;{elementName ?? '-'}&gt;
+        </span>
       }
       onClose={handleClose}
     >
       <div className="relative grid self-stretch">
-        <Suspense fallback="Loading...">
+        <Suspense
+          fallback={<div className="py-8 text-center">Loading data...</div>}
+        >
           <ElementDetailData />
         </Suspense>
       </div>

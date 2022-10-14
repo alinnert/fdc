@@ -21,7 +21,7 @@ export const ElementsListItem: FC<Props> = ({ item, onClick }) => {
       className={classNames(
         'grid select-none grid-cols-[1fr,auto] items-center border-b border-gray-300 px-4 py-2 last:border-b-0',
         {
-          'bg-pink-900 text-white hover:bg-pink-800': isCurrentItem,
+          'bg-rose-900 text-white hover:bg-rose-800': isCurrentItem,
           'hover:bg-gray-100': !isCurrentItem,
         },
       )}

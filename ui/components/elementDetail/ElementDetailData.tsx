@@ -7,6 +7,7 @@ import {
 import { elementsState } from '../../states/elementsStates'
 import { Card } from '../ui/Card'
 import { Filename } from '../ui/Filename'
+import { usePathSegments } from '../ui/usePathSegments'
 import { FamilyConfiguration } from './FamilyConfiguration'
 import { InsertOperation } from './InsertOperation'
 
@@ -14,6 +15,8 @@ export const ElementDetailData: FC = () => {
   const elementDetail = useRecoilValue(elementDetailState)
   const elements = useRecoilValue(elementsState)
   const currentFilename = useRecoilValue(currentFilenameState)
+
+  const { path, filename } = usePathSegments(currentFilename ?? '')
 
   if (elementDetail === null) {
     return <div>No element data available</div>
@@ -28,7 +31,7 @@ export const ElementDetailData: FC = () => {
       {elements.status === 'ok' && currentFilename !== null ? (
         <Card className="z-1 sticky top-0">
           <div className="p-4">
-            <Filename name={currentFilename} />
+            <Filename path={path} filename={filename} highlight />
           </div>
         </Card>
       ) : null}

@@ -8,8 +8,8 @@ import {
 } from '../../states/filterStates'
 import { Card } from '../ui/Card'
 import { EmptyIndicator } from '../ui/EmptyIndicator'
-import { Filename } from '../ui/Filename'
 import { ToolbarContainer } from '../ui/ToolbarContainer'
+import { ElementsListHeader } from './ElementsListHeader'
 import { ElementsListItem } from './ElementsListItem'
 
 export const ElementsList: FC = () => {
@@ -35,14 +35,9 @@ export const ElementsList: FC = () => {
     >
       {elements.status === 'ok' ? (
         <div className="flex flex-col gap-y-4 p-4">
-          {Object.entries(elements.data).map(([filename, results], index) => (
+          {Object.entries(elements.data).map(([filePath, results], index) => (
             <Card key={index}>
-              <div className="sticky top-0 rounded-t-md border-b border-gray-300 bg-white px-4 py-2">
-                <Filename
-                  name={filename}
-                  additionalData={`${results.length} elements`}
-                />
-              </div>
+              <ElementsListHeader filePath={filePath} results={results} />
 
               {results.map((result, index) => (
                 <ElementsListItem
