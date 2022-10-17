@@ -2,6 +2,7 @@ import { FC, MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { ElementsResultItem } from '../../../global/ElementsResult'
+import { appDataState } from '../../states/appDataStates'
 import {
   filteredElementsCountState,
   filteredElementsState,
@@ -16,6 +17,7 @@ export const ElementsList: FC = () => {
   const navigate = useNavigate()
   const elements = useRecoilValue(filteredElementsState)
   const filteredElementsCount = useRecoilValue(filteredElementsCountState)
+  const appData = useRecoilValue(appDataState)
 
   function handleItemClick(
     item: ElementsResultItem,
@@ -30,6 +32,10 @@ export const ElementsList: FC = () => {
         <>
           {filteredElementsCount > 0 ? `${filteredElementsCount} ` : ''}
           {filteredElementsCount === 1 ? 'element' : 'elements'}
+
+          <div className="font-mono text-xs font-normal text-gray-500">
+            {appData.status === 'ok' ? appData.data.basePath : null}
+          </div>
         </>
       }
     >

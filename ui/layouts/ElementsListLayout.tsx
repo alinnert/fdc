@@ -4,7 +4,7 @@ import { ElementsList } from '../components/elements/ElementsList'
 
 export const ElementsListLayout: FC = () => {
   return (
-    <div className="grid grid-cols-[4fr,1px,5fr] overflow-hidden">
+    <div className="grid grid-cols-[700px,1px,1fr] overflow-hidden">
       <Suspense
         fallback={<div className="py-8 text-center">Loading elements...</div>}
       >
