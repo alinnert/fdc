@@ -31,7 +31,7 @@ export const ElementDetailData: FC = () => {
       {elements.status === 'ok' && currentFilename !== null ? (
         <Card className="z-1 sticky top-0">
           <div className="p-4">
-            <Filename path={path} filename={filename} highlight />
+            <Filename path={path} filename={filename} />
           </div>
         </Card>
       ) : null}

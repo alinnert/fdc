@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
 import { appDataState } from '../../states/appDataStates'
@@ -7,7 +6,6 @@ interface Props {
   path: string
   filename: string
   lineNumber?: number
-  highlight?: boolean
   additionalData?: string
 }
 
@@ -15,7 +13,6 @@ export const Filename: FC<Props> = ({
   path,
   filename,
   lineNumber,
-  highlight = false,
   additionalData,
 }) => {
   const appData = useRecoilValue(appDataState)
@@ -40,14 +37,8 @@ export const Filename: FC<Props> = ({
               {path.replace(appData.data.basePath, '')}\
             </span>
 
-            <span
-              className={classNames('font-sm font-semibold', {
-                'text-rose-700': highlight,
-                'text-black': !highlight,
-              })}
-            >
-              {filename}
-            </span>
+            <span className="font-sm font-semibold text-rose-900">{filename}</span>
+
             {lineNumber !== undefined ? (
               <span className="font-semibold text-gray-400">:{lineNumber}</span>
             ) : null}
