@@ -12,18 +12,21 @@ export const getElementByName: RequestHandler = async (req, res) => {
   }
 
   try {
+    const pattern = `configureAs([A-Za-z]+)[\\s]*\\([\\s]*sxModule[\\s]*,[\\s]*['"](self::${elementName}[^a-zA-Z-].*?)['"]`
+
     await grep({
       glob: '**/configureSx*.js',
-      pattern: `configureAs[A-Za-z]+[\\s]*\\([\\s]*sxModule[\\s]*,[\\s]*['"]self::${elementName}[^a-zA-Z-]`,
+      pattern,
 
       onMatch(message) {
-        const match = message.data.lines.text.match(/configureAs(.+?)\(/)
-        if (match === null) return
+        const matches = message.data.lines.text.match(pattern)
+        if (matches === null) return
 
-        const familyType = match[1]
+        const [, familyType, selector] = matches
 
         result.familyConfigs.push({
           familyType,
+          selector,
           filename: message.data.path.text,
           line: message.data.line_number,
         })

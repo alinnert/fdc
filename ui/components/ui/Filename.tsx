@@ -37,7 +37,9 @@ export const Filename: FC<Props> = ({
               {path.replace(appData.data.basePath, '')}\
             </span>
 
-            <span className="font-sm font-semibold text-rose-900">{filename}</span>
+            <span className="font-sm font-bold text-black">
+              {filename}
+            </span>
 
             {lineNumber !== undefined ? (
               <span className="font-semibold text-gray-400">:{lineNumber}</span>

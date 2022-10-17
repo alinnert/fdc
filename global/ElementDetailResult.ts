@@ -1,5 +1,6 @@
 export type FamilyConfigItem = {
   familyType: string
+  selector: string
   filename: string
   line: number
 }
