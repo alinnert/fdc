@@ -15,7 +15,7 @@ export const Card: FC<PropsWithChildren<Props>> = ({
   return (
     <div className={`rounded-md bg-white shadow-md ${className ?? ''}`}>
       {title !== undefined ? (
-        <div className="flex items-center p-4 font-bold">
+        <div className="flex items-center px-4 pt-4 pb-2 font-bold">
           {titleIcon !== undefined ? (
             <div className="mr-1 text-gray-500">{titleIcon}</div>
           ) : null}
