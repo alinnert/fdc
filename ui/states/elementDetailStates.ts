@@ -4,12 +4,12 @@ import { endpoint } from '../lib/api'
 import { elementsState } from './elementsStates'
 
 export const elementNameState = atom<string | null>({
-  key: 'elementName',
+  key: 'element name',
   default: null,
 })
 
 export const elementDetailState = selector<ElementDetailApiResult | null>({
-  key: 'elementDetail',
+  key: 'element detail',
   async get({ get }) {
     const elementName = get(elementNameState)
     if (elementName === null) {

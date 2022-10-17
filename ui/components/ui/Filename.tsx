@@ -33,12 +33,9 @@ export const Filename: FC<Props> = ({
               </svg>
             </div>
 
-            <span className=" text-gray-500">
+            <span className="text-gray-500">
               {path.replace(appData.data.basePath, '')}\
-            </span>
-
-            <span className="font-sm font-bold text-black">
-              {filename}
+              <span className="font-sm font-bold text-black">{filename}</span>
             </span>
 
             {lineNumber !== undefined ? (

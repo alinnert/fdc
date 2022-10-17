@@ -21,15 +21,15 @@ export const FamilyConfiguration: FC<Props> = ({ familyConfig }) => {
             : 'text-teal-700',
         )}
       >
-        <div>
-          <div>{familyConfig.familyType}</div>
+        <div className="flex items-center">
+          <div className="font-sans">{familyConfig.familyType}</div>
 
           {familyConfig.familyType === 'SheetFrame' ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="h-5 w-5"
+              className="ml-1 h-5 w-5"
             >
               <path
                 fillRule="evenodd"
@@ -40,7 +40,7 @@ export const FamilyConfiguration: FC<Props> = ({ familyConfig }) => {
           ) : null}
         </div>
 
-        <div className="font-normal">{familyConfig.selector}</div>
+        <div className="font-normal text-black">{familyConfig.selector}</div>
       </div>
 
       <div className="col-start-1 col-end-3 px-4 pb-2 text-sm">

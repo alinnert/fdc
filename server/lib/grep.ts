@@ -47,6 +47,7 @@ export async function grep({
       '--multiline',
       '--multiline-dotall',
       '--json',
+      '--auto-hybrid-regex',
       '--glob',
       glob,
       // Pattern

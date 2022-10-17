@@ -12,7 +12,7 @@ export const getElementByName: RequestHandler = async (req, res) => {
   }
 
   try {
-    const pattern = `configureAs([A-Za-z]+)[\\s]*\\([\\s]*sxModule[\\s]*,[\\s]*['"](self::${elementName}[^a-zA-Z-].*?)['"]`
+    const pattern = `configureAs([A-Za-z]+)[\\s]*\\([\\s]*sxModule[\\s]*,[\\s]*['"](self::${elementName}(?![a-zA-Z-]).*?)['"]`
 
     await grep({
       glob: '**/configureSx*.js',
