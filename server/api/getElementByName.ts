@@ -42,12 +42,18 @@ export const getElementByName: RequestHandler = async (req, res) => {
   try {
     await grep({
       glob: '**/operations*.json',
-      pattern: `"contextual_insert-${elementName.replace(/[-_]/g, '[-_]')}"`,
+      pattern: `"(contextual|masthead)_insert-${elementName.replace(
+        /[-_]/g,
+        '[-_]',
+      )}"`,
 
-      onMatch(message) {
+      onMatch({ data }) {
+        const operationName = data.submatches[0].match.text.replace(/"/g, '')
+
         result.insertOperations.push({
-          filename: message.data.path.text,
-          line: message.data.line_number,
+          operationName,
+          filename: data.path.text,
+          line: data.line_number,
         })
       },
 

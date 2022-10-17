@@ -5,6 +5,7 @@ export type FamilyConfigItem = {
 }
 
 export type InsertOperationItem = {
+  operationName: string
   filename: string
   line: number
 }

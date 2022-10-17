@@ -15,7 +15,7 @@ export const FamilyConfiguration: FC<Props> = ({ familyConfig }) => {
     <div className="my-2">
       <div
         className={classNames(
-          'mb-1 flex items-center gap-x-1 px-4 font-semibold',
+          'mb-1 flex items-center gap-x-1 px-4 font-mono font-semibold',
           familyConfig.familyType === 'SheetFrame'
             ? 'text-sky-700'
             : 'text-teal-700',
@@ -39,7 +39,7 @@ export const FamilyConfiguration: FC<Props> = ({ familyConfig }) => {
         ) : null}
       </div>
 
-      <div className="col-start-1 col-end-3 px-4 pb-4 text-sm">
+      <div className="col-start-1 col-end-3 px-4 pb-2 text-sm">
         <Filename
           path={path}
           filename={filename}

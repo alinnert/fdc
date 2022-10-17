@@ -12,11 +12,11 @@ export const InsertOperation: FC<Props> = ({ insertOperation }) => {
 
   return (
     <div className="my-2">
-      <div className="mb-1 px-4 font-semibold text-orange-700">
-        Contextual insert
+      <div className="mb-1 px-4 font-mono font-semibold text-orange-700">
+        {insertOperation.operationName}
       </div>
 
-      <div className="col-start-1 col-end-3 px-4 pb-2 text-sm">
+      <div className="px-4 pb-2 text-sm">
         <Filename
           path={path}
           filename={filename}
