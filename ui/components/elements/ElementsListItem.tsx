@@ -19,7 +19,7 @@ export const ElementsListItem: FC<Props> = ({ item, onClick }) => {
   return (
     <div
       className={classNames(
-        'grid select-none grid-cols-[1fr,auto] items-center border-b border-gray-300 px-4 py-2 last:border-b-0',
+        'grid select-none grid-cols-[1fr,auto] items-center px-4 py-2',
         {
           'bg-rose-900 text-white hover:bg-rose-800': isCurrentItem,
           'hover:bg-gray-100': !isCurrentItem,
@@ -27,7 +27,7 @@ export const ElementsListItem: FC<Props> = ({ item, onClick }) => {
       )}
       onClick={onClick}
     >
-      <div className="font-semibold">&lt;{item.elementName}&gt;</div>
+      <div className="font-mono">&lt;{item.elementName}&gt;</div>
       <div
         className={classNames('text-sm', {
           'text-white': isCurrentItem,

@@ -28,7 +28,7 @@ export const ElementDetail: FC = ({}) => {
   return (
     <ToolbarContainer
       title={
-        <span key="element name" className="">
+        <span key="element name" className="font-mono">
           &lt;{elementName ?? '-'}&gt;
         </span>
       }

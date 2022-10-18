@@ -16,9 +16,8 @@ export const ElementsListHeader: FC<Props> = ({ filePath, results }) => {
     <div
       className={classNames(
         'sticky top-0',
-        'rounded-t-md',
+        'bg-gray-100',
         'border-b border-gray-300',
-        'bg-white',
         'px-4 py-2',
       )}
     >
@@ -26,7 +25,6 @@ export const ElementsListHeader: FC<Props> = ({ filePath, results }) => {
         path={path}
         filename={filename}
         additionalData={`${results.length} elements`}
-        highlight
       />
     </div>
   )

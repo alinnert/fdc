@@ -8,7 +8,6 @@ import {
   filteredElementsState,
 } from '../../states/filterStates'
 import { FilterInput } from '../filter/FilterInput'
-import { Card } from '../ui/Card'
 import { EmptyIndicator } from '../ui/EmptyIndicator'
 import { ToolbarContainer } from '../ui/ToolbarContainer'
 import { ElementsListHeader } from './ElementsListHeader'
@@ -41,9 +40,9 @@ export const ElementsList: FC = () => {
       }
     >
       {elements.status === 'ok' ? (
-        <div className="flex flex-col gap-y-4 p-4">
+        <div className="flex flex-col">
           {Object.entries(elements.data).map(([filePath, results], index) => (
-            <Card key={index}>
+            <div key={index} className="bg-white">
               <ElementsListHeader filePath={filePath} results={results} />
 
               {results.map((result, index) => (
@@ -53,7 +52,7 @@ export const ElementsList: FC = () => {
                   onClick={() => handleItemClick(result)}
                 />
               ))}
-            </Card>
+            </div>
           ))}
 
           {Object.keys(elements.data).length === 0 ? (
