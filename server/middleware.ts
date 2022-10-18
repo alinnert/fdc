@@ -9,4 +9,5 @@ export function applyMiddleware(server: Express): void {
   }
 
   server.use(express.static(resolve(__dirname, 'ui')))
+  server.use(express.json())
 }

@@ -1,5 +1,4 @@
 import { spawn } from 'node:child_process'
-import { EOL } from 'node:os'
 import { folderArg } from '../args'
 
 export type GrepBeginMessage = {

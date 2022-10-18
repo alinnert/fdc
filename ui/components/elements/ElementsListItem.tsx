@@ -22,7 +22,7 @@ export const ElementsListItem: FC<Props> = ({ item, onClick }) => {
         'grid select-none grid-cols-[1fr,auto] items-center px-4 py-2',
         {
           'bg-rose-900 text-white hover:bg-rose-800': isCurrentItem,
-          'hover:bg-gray-100': !isCurrentItem,
+          'hover:bg-gray-50': !isCurrentItem,
         },
       )}
       onClick={onClick}

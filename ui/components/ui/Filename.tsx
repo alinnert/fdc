@@ -1,5 +1,7 @@
-import { FC } from 'react'
+import classNames from 'classnames'
+import { FC, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
+import { endpoint } from '../../lib/api'
 import { appDataState } from '../../states/appDataStates'
 
 interface Props {
@@ -16,6 +18,28 @@ export const Filename: FC<Props> = ({
   additionalData,
 }) => {
   const appData = useRecoilValue(appDataState)
+
+  const filePath = useMemo<string>(() => {
+    return lineNumber !== undefined
+      ? `${path}\\${filename}:${lineNumber}`
+      : `${path}\\${filename}`
+  }, [filename, lineNumber, path])
+
+  const tooltipMessage = useMemo<string>(() => {
+    return `Open in VS Code: ${filePath}`
+  }, [filePath])
+
+  function handleFilenameClick(): void {
+    const body = { file: filePath }
+
+    fetch(endpoint('api/actions/open-in-vscode'), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+  }
 
   return (
     <div className="grid grid-cols-[1fr,auto] items-center font-mono">
@@ -35,12 +59,22 @@ export const Filename: FC<Props> = ({
 
             <span className="text-gray-500">
               {path.replace(appData.data.basePath, '')}\
-              <span className="font-sm font-bold text-black">{filename}</span>
+              <span
+                className={classNames(
+                  'cursor-pointer',
+                  'font-sm font-bold text-black hover:text-rose-600',
+                )}
+                onClick={handleFilenameClick}
+                title={tooltipMessage}
+              >
+                {filename}
+              </span>
+              {lineNumber !== undefined ? (
+                <span className="font-semibold text-gray-400">
+                  :{lineNumber}
+                </span>
+              ) : null}
             </span>
-
-            {lineNumber !== undefined ? (
-              <span className="font-semibold text-gray-400">:{lineNumber}</span>
-            ) : null}
           </>
         ) : null}
       </div>
