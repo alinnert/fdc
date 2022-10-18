@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
 import {
-  currentFilenameState,
+  currentFileDataState,
   elementDetailState,
 } from '../../states/elementDetailStates'
 import { elementsState } from '../../states/elementsStates'
@@ -14,9 +14,9 @@ import { InsertOperation } from './InsertOperation'
 export const ElementDetailData: FC = () => {
   const elementDetail = useRecoilValue(elementDetailState)
   const elements = useRecoilValue(elementsState)
-  const currentFilename = useRecoilValue(currentFilenameState)
+  const currentFileData = useRecoilValue(currentFileDataState)
 
-  const { path, filename } = usePathSegments(currentFilename ?? '')
+  const { path, filename } = usePathSegments(currentFileData?.filename ?? '')
 
   if (elementDetail === null) {
     return <div>No element data available</div>
@@ -28,10 +28,14 @@ export const ElementDetailData: FC = () => {
 
   return (
     <div className="flex flex-col gap-y-4 p-4">
-      {elements.status === 'ok' && currentFilename !== null ? (
+      {elements.status === 'ok' && currentFileData !== null ? (
         <Card className="z-1 sticky top-0">
           <div className="p-4">
-            <Filename path={path} filename={filename} />
+            <Filename
+              path={path}
+              filename={filename}
+              lineNumber={currentFileData.lineNumber}
+            />
           </div>
         </Card>
       ) : null}

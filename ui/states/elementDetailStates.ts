@@ -21,7 +21,12 @@ export const elementDetailState = selector<ElementDetailApiResult | null>({
   },
 })
 
-export const currentFilenameState = selector<string | null>({
+export type CurrentFilenameState = {
+  filename: string
+  lineNumber: number
+}
+
+export const currentFileDataState = selector<CurrentFilenameState | null>({
   key: 'current filename',
   get({ get }) {
     const elements = get(elementsState)
@@ -29,10 +34,14 @@ export const currentFilenameState = selector<string | null>({
 
     if (elements.status !== 'ok') return null
 
-    return (
-      Object.entries(elements.data).find(([filename, elements]) => {
-        return elements.some((element) => element.elementName === elementName)
-      })?.[0] ?? null
-    )
+    for (const [filename, containedElements] of Object.entries(elements.data)) {
+      for (const element of containedElements) {
+        if (element.elementName === elementName) {
+          return { filename, lineNumber: element.lineNumber }
+        }
+      }
+    }
+
+    return null
   },
 })
