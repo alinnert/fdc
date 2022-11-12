@@ -3,13 +3,13 @@ import { useRecoilValue } from 'recoil'
 import {
   currentFileDataState,
   elementDetailState,
-} from '../../states/elementDetailStates'
-import { elementsState } from '../../states/elementsStates'
-import { Card } from '../ui/Card'
-import { Filename } from '../ui/Filename'
-import { usePathSegments } from '../ui/usePathSegments'
-import { FamilyConfiguration } from './FamilyConfiguration'
-import { InsertOperation } from './InsertOperation'
+} from '../../states/elementDetailStates.js'
+import { elementsState } from '../../states/elementsStates.js'
+import { Card } from '../ui/Card.js'
+import { Filename } from '../ui/Filename.js'
+import { usePathSegments } from '../ui/usePathSegments.js'
+import { FamilyConfiguration } from './FamilyConfiguration.js'
+import { InsertOperation } from './InsertOperation.js'
 
 export const ElementDetailData: FC = () => {
   const elementDetail = useRecoilValue(elementDetailState)

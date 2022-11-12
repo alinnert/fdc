@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 import { FC, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
-import { endpoint } from '../../lib/api'
-import { appDataState } from '../../states/appDataStates'
+import { endpoint } from '../../lib/api.js'
+import { appDataState } from '../../states/appDataStates.js'
 
 interface Props {
   path: string

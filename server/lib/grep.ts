@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process'
-import { folderArg } from '../args'
+import { folderArg } from '../args.js'
 
 export type GrepBeginMessage = {
   type: 'begin'

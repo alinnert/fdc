@@ -5,8 +5,8 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   filterStringState,
   firstFilteredElementState,
-} from '../../states/filterStates'
-import { IconButton } from '../ui/IconButton'
+} from '../../states/filterStates.js'
+import { IconButton } from '../ui/IconButton.js'
 
 export const FilterInput: FC = () => {
   const inputRef = useRef<HTMLInputElement>(null)

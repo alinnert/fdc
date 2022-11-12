@@ -1,8 +1,8 @@
 import classNames from 'classnames'
-import { FC, MouseEventHandler, useMemo } from 'react'
+import { FC, Fragment, MouseEventHandler, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
-import { ElementsResultItem } from '../../../global/ElementsResult'
-import { elementNameState } from '../../states/elementDetailStates'
+import { ElementsResultItem } from '../../../global/ElementsResult.js'
+import { elementNameState } from '../../states/elementDetailStates.js'
 
 interface Props {
   item: ElementsResultItem
@@ -27,7 +27,16 @@ export const ElementsListItem: FC<Props> = ({ item, onClick }) => {
       )}
       onClick={onClick}
     >
-      <div className="font-mono">&lt;{item.elementName}&gt;</div>
+      <div className="font-mono">
+        {item.parents !== undefined
+          ? item.parents.map((parent, index) => (
+              <Fragment key={index}>
+                <span>&lt;{parent}&gt;</span> &raquo;{' '}
+              </Fragment>
+            ))
+          : null}
+        <span>&lt;{item.elementName}&gt;</span>
+      </div>
       <div
         className={classNames('text-sm', {
           'text-white': isCurrentItem,

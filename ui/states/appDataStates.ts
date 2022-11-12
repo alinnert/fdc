@@ -1,6 +1,6 @@
 import { selector } from 'recoil'
-import { AppDataApiResult } from '../../global/ApiResult'
-import { endpoint } from '../lib/api'
+import { AppDataApiResult } from '../../global/ApiResult.js'
+import { endpoint } from '../lib/api.js'
 
 export const appDataState = selector<AppDataApiResult>({
   key: 'app-data',

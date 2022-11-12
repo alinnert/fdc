@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import express from 'express'
-import { folderArg, portArg } from './args'
-import { applyMiddleware } from './middleware'
-import { applyRoutes } from './routes'
+import { folderArg, portArg } from './args.js'
+import { applyMiddleware } from './middleware.js'
+import { applyRoutes } from './routes.js'
 
 const server = express()
 

@@ -1,6 +1,6 @@
-import { AppDataResult } from './AppDataResult'
-import { ElementDetailResult } from './ElementDetailResult'
-import { ElementsResult } from './ElementsResult'
+import { AppDataResult } from './AppDataResult.js'
+import { ElementDetailResult } from './ElementDetailResult.js'
+import { ElementsResult } from './ElementsResult.js'
 
 export type ApiSuccessResult<Data> = {
   status: 'ok'

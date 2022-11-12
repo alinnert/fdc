@@ -1,8 +1,11 @@
 import fuzzysort from 'fuzzysort'
 import { atom, selector } from 'recoil'
-import { ElementsApiResult } from '../../global/ApiResult'
-import { ElementsResult, ElementsResultItem } from '../../global/ElementsResult'
-import { elementsState } from './elementsStates'
+import { ElementsApiResult } from '../../global/ApiResult.js'
+import {
+  ElementsResult,
+  ElementsResultItem,
+} from '../../global/ElementsResult.js'
+import { elementsState } from './elementsStates.js'
 
 export const filterStringState = atom({ key: 'filterString', default: '' })
 

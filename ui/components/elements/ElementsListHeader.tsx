@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 import { FC } from 'react'
-import { ElementsResultItem } from '../../../global/ElementsResult'
-import { Filename } from '../ui/Filename'
-import { usePathSegments } from '../ui/usePathSegments'
+import { ElementsResultItem } from '../../../global/ElementsResult.js'
+import { Filename } from '../ui/Filename.js'
+import { usePathSegments } from '../ui/usePathSegments.js'
 
 interface Props {
   filePath: string

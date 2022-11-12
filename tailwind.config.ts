@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
-const config = {
+export default {
   content: ['index.html', './ui/**/*.{ts,tsx}'],
   theme: {
     extend: {},
@@ -7,4 +7,3 @@ const config = {
   plugins: [],
 }
 
-module.exports = config

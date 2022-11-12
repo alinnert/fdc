@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { EmptyIndicator } from '../components/ui/EmptyIndicator'
+import { EmptyIndicator } from '../components/ui/EmptyIndicator.js'
 
 export const Index: FC = ({}) => {
   return (

@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express'
-import { ElementDetailResult } from '../../global/ElementDetailResult'
-import { apiErrorResult, apiSuccessResult } from '../lib/apiResult'
-import { grep } from '../lib/grep'
+import { ElementDetailResult } from '../../global/ElementDetailResult.js'
+import { apiErrorResult, apiSuccessResult } from '../lib/apiResult.js'
+import { grep } from '../lib/grep.js'
 
 export const getElementByName: RequestHandler = async (req, res) => {
   const elementName = req.params.elementName

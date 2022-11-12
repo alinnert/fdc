@@ -1,18 +1,11 @@
 import { FC, Suspense, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import {
-  useRecoilRefresher_UNSTABLE,
-  useRecoilValue,
-  useSetRecoilState,
-} from 'recoil'
-import { ElementDetailData } from '../components/elementDetail/ElementDetailData'
-import { ButtonRow } from '../components/ui/ButtonRow'
-import { IconButton } from '../components/ui/IconButton'
-import { ToolbarContainer } from '../components/ui/ToolbarContainer'
-import {
-  elementNameState,
-  elementDetailState,
-} from '../states/elementDetailStates'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { ElementDetailData } from '../components/elementDetail/ElementDetailData.js'
+import { ButtonRow } from '../components/ui/ButtonRow.js'
+import { IconButton } from '../components/ui/IconButton.js'
+import { ToolbarContainer } from '../components/ui/ToolbarContainer.js'
+import { elementNameState } from '../states/elementDetailStates.js'
 
 export const ElementDetail: FC = ({}) => {
   const navigate = useNavigate()

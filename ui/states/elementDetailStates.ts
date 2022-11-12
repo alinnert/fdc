@@ -1,7 +1,7 @@
 import { atom, selector } from 'recoil'
-import { ElementDetailApiResult } from '../../global/ApiResult'
-import { endpoint } from '../lib/api'
-import { elementsState } from './elementsStates'
+import { ElementDetailApiResult } from '../../global/ApiResult.js'
+import { endpoint } from '../lib/api.js'
+import { elementsState } from './elementsStates.js'
 
 export const elementNameState = atom<string | null>({
   key: 'element name',

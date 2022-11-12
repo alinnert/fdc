@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-import { appDataState } from '../../states/appDataStates'
+import { appDataState } from '../../states/appDataStates.js'
 
 export const AppHeader: FC = () => {
   const appData = useRecoilValue(appDataState)

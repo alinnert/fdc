@@ -1,4 +1,4 @@
-import { ApiErrorResult, ApiSuccessResult } from '../../global/ApiResult'
+import { ApiErrorResult, ApiSuccessResult } from '../../global/ApiResult.js'
 
 export function apiSuccessResult<Data>(data: Data): ApiSuccessResult<Data> {
   return { status: 'ok', data }

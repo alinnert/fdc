@@ -1,8 +1,8 @@
 import { FC, Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
-import { AppHeader } from '../components/app/AppHeader'
-import { ElementsList } from '../components/elements/ElementsList'
-import { EmptyIndicator } from '../components/ui/EmptyIndicator'
+import { AppHeader } from '../components/app/AppHeader.js'
+import { ElementsList } from '../components/elements/ElementsList.js'
+import { EmptyIndicator } from '../components/ui/EmptyIndicator.js'
 
 export const BaseLayout: FC = () => {
   return (

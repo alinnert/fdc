@@ -1,20 +1,20 @@
 import { FC, Suspense } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilRefresher_UNSTABLE, useRecoilValue } from 'recoil'
-import { ElementsResultItem } from '../../../global/ElementsResult'
-import { elementDetailState } from '../../states/elementDetailStates'
-import { elementsCountState } from '../../states/elementsStates'
+import { ElementsResultItem } from '../../../global/ElementsResult.js'
+import { elementDetailState } from '../../states/elementDetailStates.js'
+import { elementsCountState } from '../../states/elementsStates.js'
 import {
   filteredElementsCountState,
   filteredElementsState,
-} from '../../states/filterStates'
-import { FilterInput } from '../filter/FilterInput'
-import { ButtonRow } from '../ui/ButtonRow'
-import { EmptyIndicator } from '../ui/EmptyIndicator'
-import { IconButton } from '../ui/IconButton'
-import { ToolbarContainer } from '../ui/ToolbarContainer'
-import { ElementsListHeader } from './ElementsListHeader'
-import { ElementsListItem } from './ElementsListItem'
+} from '../../states/filterStates.js'
+import { FilterInput } from '../filter/FilterInput.js'
+import { ButtonRow } from '../ui/ButtonRow.js'
+import { EmptyIndicator } from '../ui/EmptyIndicator.js'
+import { IconButton } from '../ui/IconButton.js'
+import { ToolbarContainer } from '../ui/ToolbarContainer.js'
+import { ElementsListHeader } from './ElementsListHeader.js'
+import { ElementsListItem } from './ElementsListItem.js'
 
 export const ElementsList: FC = () => {
   const navigate = useNavigate()

@@ -1,9 +1,9 @@
 import { Express } from 'express'
 import { resolve } from 'path'
-import { getAppData } from './api/getAppData'
-import { getElementByName } from './api/getElementByName'
-import { getElements } from './api/getElements'
-import { postOpenInVSCode } from './api/postOpenInVSCode'
+import { getAppData } from './api/getAppData.js'
+import { getElementByName } from './api/getElementByName.js'
+import { getElements } from './api/getElements.js'
+import { postOpenInVSCode } from './api/postOpenInVSCode.js'
 
 export function applyRoutes(server: Express): void {
   server.get('/api/appdata', getAppData)

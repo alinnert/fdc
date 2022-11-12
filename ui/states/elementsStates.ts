@@ -1,6 +1,6 @@
 import { selector } from 'recoil'
-import { ElementsApiResult } from '../../global/ApiResult'
-import { endpoint } from '../lib/api'
+import { ElementsApiResult } from '../../global/ApiResult.js'
+import { endpoint } from '../lib/api.js'
 
 export const elementsState = selector<ElementsApiResult>({
   key: 'elements',

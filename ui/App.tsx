@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { BaseLayout } from './layouts/BaseLayout'
-import { ElementDetail } from './pages/ElementDetail'
-import { Index } from './pages/Index'
+import { BaseLayout } from './layouts/BaseLayout.js'
+import { ElementDetail } from './pages/ElementDetail.js'
+import { Index } from './pages/Index.js'
 
 export const App: FC = () => (
   <BrowserRouter>

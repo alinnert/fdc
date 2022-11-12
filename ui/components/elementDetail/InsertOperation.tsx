@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import { InsertOperationItem } from '../../../global/ElementDetailResult'
-import { Filename } from '../ui/Filename'
-import { usePathSegments } from '../ui/usePathSegments'
+import { InsertOperationItem } from '../../../global/ElementDetailResult.js'
+import { Filename } from '../ui/Filename.js'
+import { usePathSegments } from '../ui/usePathSegments.js'
 
 interface Props {
   insertOperation: InsertOperationItem
