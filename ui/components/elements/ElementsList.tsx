@@ -1,4 +1,4 @@
-import { FC, Suspense } from 'react'
+import { FC, Suspense, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilRefresher_UNSTABLE, useRecoilValue } from 'recoil'
 import { ElementsResultItem } from '../../../global/ElementsResult.js'
@@ -22,6 +22,27 @@ export const ElementsList: FC = () => {
   const elementsCount = useRecoilValue(elementsCountState)
   const filteredElementsCount = useRecoilValue(filteredElementsCountState)
   const resetElementDetail = useRecoilRefresher_UNSTABLE(elementDetailState)
+
+  useEffect(() => {
+    function handleKeydown(event: globalThis.KeyboardEvent): void {
+      if (event.key !== 'r') return
+      if (
+        ['input', 'textarea'].includes(
+          document.activeElement?.nodeName.toLowerCase() ?? '',
+        )
+      ) {
+        return
+      }
+
+      resetElementDetail()
+    }
+
+    addEventListener('keydown', handleKeydown)
+
+    return () => {
+      removeEventListener('keydown', handleKeydown)
+    }
+  }, [resetElementDetail])
 
   function handleRefresh(): void {
     resetElementDetail()

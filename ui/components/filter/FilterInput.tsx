@@ -15,11 +15,11 @@ export const FilterInput: FC = () => {
   const firstFilteredElement = useRecoilValue(firstFilteredElementState)
 
   useEffect(() => {
-    const handleKeydown = (event: globalThis.KeyboardEvent): void => {
+    function handleKeydown(event: globalThis.KeyboardEvent): void {
       if (inputRef.current === null) return
       if (document.activeElement === inputRef.current) return
       if (event.key !== 'f') return
-      inputRef.current.focus()
+      inputRef.current.select()
       event.preventDefault()
     }
 
@@ -54,7 +54,7 @@ export const FilterInput: FC = () => {
           'px-2 py-1',
           'text-sm text-gray-700',
           'placeholder:text-black/50',
-          'border border-gray-300'
+          'border border-gray-300',
         )}
         type="text"
         ref={inputRef}
