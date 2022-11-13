@@ -9,7 +9,7 @@ export const App: FC = () => (
     <Routes>
       <Route element={<BaseLayout />}>
         <Route path="/" element={<Index />} />
-        <Route path="/element/:elementName" element={<ElementDetail />} />
+        <Route path="/element/*" element={<ElementDetail />} />
       </Route>
     </Routes>
   </BrowserRouter>

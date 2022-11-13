@@ -32,7 +32,6 @@ export const FilterInput: FC = () => {
 
   function handleKeyDown(event: KeyboardEvent<HTMLInputElement>): void {
     if (event.key !== 'Enter') return
-    console.log(firstFilteredElement)
     if (firstFilteredElement === null) return
     navigate(`/element/${firstFilteredElement.elementName}`)
   }

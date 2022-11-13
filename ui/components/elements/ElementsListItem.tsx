@@ -1,8 +1,13 @@
 import classNames from 'classnames'
-import { FC, Fragment, MouseEventHandler, useMemo } from 'react'
+import { FC, MouseEventHandler, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { ElementsResultItem } from '../../../global/ElementsResult.js'
-import { elementNameState } from '../../states/elementDetailStates.js'
+import {
+  elementPathsAreEqual,
+  getElementPathFromElementResultItem,
+} from '../../lib/elements.js'
+import { elementPathState } from '../../states/elementDetailStates.js'
+import { ElementPath } from '../ui/elementPath.js'
 
 interface Props {
   item: ElementsResultItem
@@ -10,47 +15,31 @@ interface Props {
 }
 
 export const ElementsListItem: FC<Props> = ({ item, onClick }) => {
-  const elementName = useRecoilValue(elementNameState)
+  const elementPath = useRecoilValue(elementPathState)
 
   const isCurrentItem = useMemo(() => {
-    return item.elementName === elementName
-  }, [elementName, item.elementName])
+    return elementPathsAreEqual(
+      getElementPathFromElementResultItem(item),
+      elementPath ?? '',
+    )
+  }, [elementPath, item])
 
   return (
     <div
       className={classNames(
         'grid select-none grid-cols-[1fr,auto] items-center px-4 py-2',
         {
-          'bg-brand-900 text-white hover:bg-brand-800': isCurrentItem,
+          'bg-brand-900 hover:bg-brand-800 text-white': isCurrentItem,
           'hover:bg-neutral-50': !isCurrentItem,
         },
       )}
       onClick={onClick}
     >
       <div className="font-mono">
-        {item.parents !== undefined
-          ? item.parents.map((parent, index) => (
-              <Fragment key={index}>
-                <span
-                  className={classNames({
-                    'text-brand-300': isCurrentItem,
-                    'text-neutral-400': !isCurrentItem,
-                  })}
-                >
-                  &lt;{parent}&gt;
-                </span>{' '}
-                <span
-                  className={classNames({
-                    'text-brand-400': isCurrentItem,
-                    'text-neutral-300': !isCurrentItem,
-                  })}
-                >
-                  &raquo;
-                </span>{' '}
-              </Fragment>
-            ))
-          : null}
-        <span>&lt;{item.elementName}&gt;</span>
+        <ElementPath
+          path={[...(item.parents ?? []), item.elementName]}
+          color={isCurrentItem ? 'brand-dark' : 'neutral-light'}
+        />
       </div>
     </div>
   )

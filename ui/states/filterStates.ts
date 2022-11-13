@@ -29,7 +29,7 @@ export const filteredElementsState = selector<ElementsApiResult>({
       const fuzzysortResults = fuzzysort.go<ElementsResultItem>(
         filterString,
         results,
-        { key: 'elementName' },
+        { keys: ['elementName', 'parents'] },
       )
 
       if (fuzzysortResults.length === 0) continue

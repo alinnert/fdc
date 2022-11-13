@@ -31,11 +31,7 @@ export const ElementDetailData: FC = () => {
       {elements.status === 'ok' && currentFileData !== null ? (
         <Card className="z-1 sticky top-0">
           <div className="p-4">
-            <Filename
-              path={path}
-              filename={filename}
-              lineNumber={currentFileData.lineNumber}
-            />
+            <Filename path={path} filename={filename} />
           </div>
         </Card>
       ) : null}

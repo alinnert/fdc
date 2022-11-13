@@ -3,32 +3,37 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { ElementDetailData } from '../components/elementDetail/ElementDetailData.js'
 import { ButtonRow } from '../components/ui/ButtonRow.js'
+import { ElementPath } from '../components/ui/elementPath.js'
 import { IconButton } from '../components/ui/IconButton.js'
 import { ToolbarContainer } from '../components/ui/ToolbarContainer.js'
-import { elementNameState } from '../states/elementDetailStates.js'
+import { elementPathState } from '../states/elementDetailStates.js'
 
 export const ElementDetail: FC = ({}) => {
   const navigate = useNavigate()
   const params = useParams()
-  const [elementName, setElementName] = useRecoilState(elementNameState)
+  const [elementPath, setElementPath] = useRecoilState(elementPathState)
 
   useEffect(() => {
-    setElementName(params.elementName ?? null)
-
+    const elementPath = params['*']?.split('/') ?? []
+    setElementPath(elementPath ?? null)
     return () => {
-      setElementName(null)
+      setElementPath(null)
     }
-  }, [params.elementName, setElementName])
+  }, [params, setElementPath])
 
   function handleClose(): void {
     navigate('/')
+  }
+
+  if (elementPath === null) {
+    return null
   }
 
   return (
     <ToolbarContainer
       title={
         <span key="element name" className="font-mono">
-          &lt;{elementName ?? '-'}&gt;
+          <ElementPath path={elementPath} />
         </span>
       }
       secondaryContent={
