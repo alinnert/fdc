@@ -1,6 +1,6 @@
 import { FC, Suspense, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { ElementDetailData } from '../components/elementDetail/ElementDetailData.js'
 import { ButtonRow } from '../components/ui/ButtonRow.js'
 import { IconButton } from '../components/ui/IconButton.js'
@@ -10,8 +10,7 @@ import { elementNameState } from '../states/elementDetailStates.js'
 export const ElementDetail: FC = ({}) => {
   const navigate = useNavigate()
   const params = useParams()
-  const elementName = useRecoilValue(elementNameState)
-  const setElementName = useSetRecoilState(elementNameState)
+  const [elementName, setElementName] = useRecoilState(elementNameState)
 
   useEffect(() => {
     setElementName(params.elementName ?? null)

@@ -1,60 +1,48 @@
 import { DOMParser } from '@xmldom/xmldom'
 import { readFile } from 'node:fs/promises'
 import { ElementsResultItem } from '../../global/ElementsResult.js'
-import { forEachNodeOrElement, mapNodeOrElement } from './xmldom/forEachNode.js'
+import { XMLSchemaNamespaceURI } from './namespaceURLs.js'
+import { arrayFromNodeList } from './xmldom/arrayFromNodeList.js'
+import { getParentElements } from './xmldom/getParentElements.js'
+import { isElement } from './xmldom/isElement.js'
+import { mapNodeOrElement } from './xmldom/mapNodeOrElement.js'
 
-const isElement =
-  (elementName: string) =>
-  (node: Node): node is Element =>
-    node.nodeType === node.ELEMENT_NODE &&
-    node.nodeName.toLowerCase() === elementName.toLowerCase()
+const parser = new DOMParser()
 
-const XMLSchemaNSURL = 'http://www.w3.org/2001/XMLSchema'
 export async function processSchemaFile(
   filePath: string,
 ): Promise<[filePath: string, result: ElementsResultItem[]]> {
   const fileContent = await readFile(filePath, { encoding: 'utf-8' })
-  const parser = new DOMParser()
   const document = parser.parseFromString(fileContent, 'application/xml')
-  const firstLevelNodes = document.documentElement.childNodes
-  const firstLevelNodesArray: Node[] = []
-
-  forEachNodeOrElement(firstLevelNodes, (node) =>
-    firstLevelNodesArray.push(node),
-  )
-
-  const elementDefinitions = firstLevelNodesArray.filter(
-    isElement('xs:element'),
+  const rootChildNodes = document.documentElement.childNodes
+  const firstLevelNodes: Node[] = arrayFromNodeList(rootChildNodes)
+  const elementDefinitions = firstLevelNodes.filter(
+    isElement('element', XMLSchemaNamespaceURI),
   )
 
   const resultItems: ElementsResultItem[] =
     elementDefinitions.flatMap<ElementsResultItem>((element) => {
       const childElementDefinitions = element.getElementsByTagNameNS(
-        XMLSchemaNSURL,
+        XMLSchemaNamespaceURI,
         'element',
       )
 
-      const elementName = element.getAttribute('name') || '-'
+      const elementName = element.getAttribute('name') || '?'
 
       const descendantItems = mapNodeOrElement<ElementsResultItem | null>(
         childElementDefinitions,
         (element) => {
-          const descendantElementName = (element as Element).getAttribute(
-            'name',
-          )
-
-          if (
-            descendantElementName === null ||
-            descendantElementName.trim() === ''
-          ) {
+          const elementName = (element as Element).getAttribute('name')
+          if (elementName === null || elementName.trim() === '') {
             return null
           }
 
-          return {
-            elementName: descendantElementName,
-            parents: [elementName],
-            lineNumber: 2,
-          }
+          const parents = getParentElements(element as Element)
+            .filter(isElement('element', XMLSchemaNamespaceURI))
+            .map((element) => element.getAttribute('name') || '?')
+
+          const lineNumber = 1000
+          return { elementName, parents, lineNumber }
         },
       )
 

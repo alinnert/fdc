@@ -21,8 +21,8 @@ export const Filename: FC<Props> = ({
 
   const filePath = useMemo<string>(() => {
     return lineNumber !== undefined
-      ? `${path}\\${filename}:${lineNumber}`
-      : `${path}\\${filename}`
+      ? `${path.replace('\\', '/')}/${filename}:${lineNumber}`
+      : `${path.replace('\\', '/')}/${filename}`
   }, [filename, lineNumber, path])
 
   const tooltipMessage = useMemo<string>(() => {
@@ -58,7 +58,7 @@ export const Filename: FC<Props> = ({
             </div>
 
             <span className="text-gray-500">
-              {path.replace(appData.data.basePath, '')}\
+              {path.replace(appData.data.basePath, '')}/
               <span
                 className={classNames(
                   'cursor-pointer',
