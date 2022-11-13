@@ -23,7 +23,6 @@ export const elementDetailState = selector<ElementDetailApiResult | null>({
 
 export type CurrentFilenameState = {
   filename: string
-  lineNumber: number
 }
 
 export const currentFileDataState = selector<CurrentFilenameState | null>({
@@ -37,7 +36,7 @@ export const currentFileDataState = selector<CurrentFilenameState | null>({
     for (const [filename, containedElements] of Object.entries(elements.data)) {
       for (const element of containedElements) {
         if (element.elementName === elementName) {
-          return { filename, lineNumber: element.lineNumber }
+          return { filename }
         }
       }
     }

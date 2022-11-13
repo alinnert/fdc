@@ -1,5 +1,4 @@
 export type ElementsResultItem = {
-  lineNumber: number
   elementName: string
   parents?: string[]
 }

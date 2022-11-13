@@ -16,8 +16,8 @@ export const ElementsListHeader: FC<Props> = ({ filePath, results }) => {
     <div
       className={classNames(
         'sticky top-0',
-        'bg-gray-100',
-        'border-b border-gray-300',
+        'bg-neutral-100',
+        'border-b border-neutral-300',
         'px-4 py-2',
       )}
     >

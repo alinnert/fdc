@@ -41,13 +41,12 @@ export async function processSchemaFile(
             .filter(isElement('element', XMLSchemaNamespaceURI))
             .map((element) => element.getAttribute('name') || '?')
 
-          const lineNumber = 1000
-          return { elementName, parents, lineNumber }
+          return { elementName, parents }
         },
       )
 
       return [
-        { elementName, lineNumber: 1 },
+        { elementName },
         ...descendantItems.filter(
           (item): item is ElementsResultItem => item !== null,
         ),

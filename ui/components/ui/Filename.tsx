@@ -46,7 +46,7 @@ export const Filename: FC<Props> = ({
       <div className="flex items-center text-xs">
         {appData.status === 'ok' ? (
           <>
-            <div title={appData.data.basePath} className="mr-1 text-gray-400">
+            <div title={appData.data.basePath} className="mr-1 text-neutral-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -57,12 +57,12 @@ export const Filename: FC<Props> = ({
               </svg>
             </div>
 
-            <span className="text-gray-500">
+            <span className="text-neutral-500">
               {path.replace(appData.data.basePath, '')}/
               <span
                 className={classNames(
                   'cursor-pointer',
-                  'font-sm font-bold text-black hover:text-rose-600',
+                  'font-sm font-bold text-black hover:text-brand-600',
                 )}
                 onClick={handleFilenameClick}
                 title={tooltipMessage}
@@ -70,7 +70,7 @@ export const Filename: FC<Props> = ({
                 {filename}
               </span>
               {lineNumber !== undefined ? (
-                <span className="font-semibold text-gray-400">
+                <span className="font-semibold text-neutral-400">
                   :{lineNumber}
                 </span>
               ) : null}

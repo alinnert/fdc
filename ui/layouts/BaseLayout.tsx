@@ -6,7 +6,7 @@ import { EmptyIndicator } from '../components/ui/EmptyIndicator.js'
 
 export const BaseLayout: FC = () => {
   return (
-    <div className="fixed inset-0 grid grid-rows-[auto,1fr]">
+    <div className="titlebar-margin fixed inset-0 grid grid-rows-[auto,1fr]">
       <Suspense>
         <AppHeader />
       </Suspense>
@@ -16,7 +16,7 @@ export const BaseLayout: FC = () => {
           <ElementsList />
         </Suspense>
 
-        <div className="h-full w-px bg-gray-300" />
+        <div className="h-full w-px bg-neutral-300" />
 
         <Outlet />
       </div>

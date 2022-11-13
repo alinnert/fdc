@@ -52,9 +52,9 @@ export const FilterInput: FC = () => {
           'mr-1 w-80 rounded',
           'bg-white',
           'px-2 py-1',
-          'text-sm text-gray-700',
+          'text-sm text-neutral-700',
           'placeholder:text-black/50',
-          'border border-gray-300',
+          'border border-neutral-300',
         )}
         type="text"
         ref={inputRef}

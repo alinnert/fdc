@@ -15,12 +15,12 @@ export const IconButton: FC<Props> = ({ icon, disabled, onClick }) => {
         'cursor-default',
         'rounded',
         'p-1',
-        'text-2xl leading-none text-gray-600',
-        'enabled:hover:bg-gray-300',
-        'enabled:active:bg-gray-500 enabled:active:text-white',
+        'text-2xl leading-none text-neutral-600',
+        'enabled:hover:bg-neutral-300',
+        'enabled:active:bg-neutral-500 enabled:active:text-white',
         'disabled:opacity-30',
-        'border enabled:border-gray-300 disabled:border-transparent',
-        'enabled:active:border-gray-500',
+        'border enabled:border-neutral-300 disabled:border-transparent',
+        'enabled:active:border-neutral-500',
       )}
       disabled={disabled}
       onClick={onClick}

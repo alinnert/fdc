@@ -21,8 +21,8 @@ export const ElementsListItem: FC<Props> = ({ item, onClick }) => {
       className={classNames(
         'grid select-none grid-cols-[1fr,auto] items-center px-4 py-2',
         {
-          'bg-rose-900 text-white hover:bg-rose-800': isCurrentItem,
-          'hover:bg-gray-50': !isCurrentItem,
+          'bg-brand-900 text-white hover:bg-brand-800': isCurrentItem,
+          'hover:bg-neutral-50': !isCurrentItem,
         },
       )}
       onClick={onClick}
@@ -31,19 +31,26 @@ export const ElementsListItem: FC<Props> = ({ item, onClick }) => {
         {item.parents !== undefined
           ? item.parents.map((parent, index) => (
               <Fragment key={index}>
-                <span>&lt;{parent}&gt;</span> &raquo;{' '}
+                <span
+                  className={classNames({
+                    'text-brand-300': isCurrentItem,
+                    'text-neutral-400': !isCurrentItem,
+                  })}
+                >
+                  &lt;{parent}&gt;
+                </span>{' '}
+                <span
+                  className={classNames({
+                    'text-brand-400': isCurrentItem,
+                    'text-neutral-300': !isCurrentItem,
+                  })}
+                >
+                  &raquo;
+                </span>{' '}
               </Fragment>
             ))
           : null}
         <span>&lt;{item.elementName}&gt;</span>
-      </div>
-      <div
-        className={classNames('text-sm', {
-          'text-white': isCurrentItem,
-          'text-gray-500': !isCurrentItem,
-        })}
-      >
-        Zeile {item.lineNumber}
       </div>
     </div>
   )

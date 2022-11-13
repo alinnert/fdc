@@ -6,12 +6,12 @@ export const AppHeader: FC = () => {
   const appData = useRecoilValue(appDataState)
 
   return (
-    <div className="flex items-baseline bg-rose-800 px-4 py-2">
-      <div className="select-none text-lg font-semibold text-rose-200">
+    <div className="titlebar app-drag bg-brand-800 flex items-center px-4 py-2">
+      <div className="text-brand-200 select-none font-semibold">
         Fonto Dev Companion
       </div>
 
-      <div className="ml-8 font-mono text-sm text-rose-300">
+      <div className="app-no-drag text-brand-300 ml-8 font-mono text-sm">
         {appData.status === 'ok' ? appData.data.basePath : null}
       </div>
     </div>
