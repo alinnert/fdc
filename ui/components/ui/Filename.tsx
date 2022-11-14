@@ -35,13 +35,6 @@ export const Filename: FC<Props> = ({
       ? normalizePath(path).replace(normalizePath(appData.data.basePath), '')
       : ''
 
-  if (appData.status === 'ok') {
-    console.log('================================')
-    console.log(path)
-    console.log(appData.data.basePath)
-    console.log(path.startsWith(appData.data.basePath))
-  }
-
   function handleFilenameClick(): void {
     const body = { file: filePath }
 

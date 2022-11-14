@@ -18,7 +18,7 @@ import { ElementsListItem } from './ElementsListItem.js'
 
 export const ElementsList: FC = () => {
   const navigate = useNavigate()
-  const elements = useRecoilValue(filteredElementsState)
+  const filteredElements = useRecoilValue(filteredElementsState)
   const elementsCount = useRecoilValue(elementsCountState)
   const filteredElementsCount = useRecoilValue(filteredElementsCountState)
   const resetElementDetail = useRecoilRefresher_UNSTABLE(elementDetailState)
@@ -92,30 +92,31 @@ export const ElementsList: FC = () => {
         </ButtonRow>
       }
     >
-      {elements.status === 'ok' ? (
+      {Object.keys(filteredElements).length > 0 ? (
         <div className="flex flex-col">
-          {Object.entries(elements.data).map(([filePath, results], index) => (
-            <div key={index} className="bg-white">
-              <ElementsListHeader filePath={filePath} results={results} />
+          {Object.entries(filteredElements).map(
+            ([filePath, results], index) => (
+              <div key={index} className="bg-white">
+                <ElementsListHeader filePath={filePath} results={results} />
 
-              {results.map((result, index) => (
-                <ElementsListItem
-                  key={index}
-                  item={result}
-                  onClick={() => handleItemClick(result)}
-                />
-              ))}
-            </div>
-          ))}
+                {results.map((result, index) => (
+                  <ElementsListItem
+                    key={index}
+                    item={result}
+                    onClick={() => handleItemClick(result)}
+                  />
+                ))}
+              </div>
+            ),
+          )}
 
-          {Object.keys(elements.data).length === 0 ? (
+          {Object.keys(filteredElements).length === 0 ? (
             <EmptyIndicator content="No elements found" />
           ) : null}
         </div>
       ) : (
         <>
           <div>Error!</div>
-          <div>{elements.error}</div>
         </>
       )}
     </ToolbarContainer>

@@ -1,35 +1,35 @@
 import fuzzysort from 'fuzzysort'
 import { atom, selector } from 'recoil'
-import { ElementsApiResult } from '../../global/ApiResult.js'
 import {
-  ElementsResult,
   ElementsResultItem,
+  SearchableElementsResult,
+  SearchableElementsResultItem,
 } from '../../global/ElementsResult.js'
-import { elementsState } from './elementsStates.js'
+import { searchableElementsState } from './elementsStates.js'
 
 export const filterStringState = atom({ key: 'filterString', default: '' })
 
-export const filteredElementsState = selector<ElementsApiResult>({
+export const filteredElementsState = selector<SearchableElementsResult>({
   key: 'filteredElements',
   get({ get }) {
-    const elements = get(elementsState)
+    const searchableElements = get(searchableElementsState)
     const filterString = get(filterStringState)
 
     if (filterString === '') {
-      return elements
+      return searchableElements ?? {}
     }
 
-    if (elements.status !== 'ok') {
-      return elements
+    if (searchableElements === null) {
+      return {}
     }
 
-    const result: ElementsResult = {}
+    const result: SearchableElementsResult = {}
 
-    for (const [filename, results] of Object.entries(elements.data)) {
-      const fuzzysortResults = fuzzysort.go<ElementsResultItem>(
+    for (const [filename, results] of Object.entries(searchableElements)) {
+      const fuzzysortResults = fuzzysort.go<SearchableElementsResultItem>(
         filterString,
         results,
-        { keys: ['elementName', 'parents'] },
+        { keys: ['searchString'] },
       )
 
       if (fuzzysortResults.length === 0) continue
@@ -43,7 +43,7 @@ export const filteredElementsState = selector<ElementsApiResult>({
       }
     }
 
-    return { status: 'ok', data: result }
+    return result
   },
 })
 
@@ -51,8 +51,7 @@ export const flatFilteredElementsState = selector<ElementsResultItem[]>({
   key: 'flatFilteredElements',
   get({ get }) {
     const filteredElements = get(filteredElementsState)
-    if (filteredElements.status !== 'ok') return []
-    return Object.values(filteredElements.data).flat()
+    return Object.values(filteredElements).flat()
   },
 })
 

@@ -1,9 +1,12 @@
 import { Express } from 'express'
 import { resolve } from 'path'
+import { fileURLToPath } from 'url'
 import { getAppData } from './api/getAppData.js'
 import { getElementByName } from './api/getElementByName.js'
 import { getElements } from './api/getElements.js'
 import { postOpenInVSCode } from './api/postOpenInVSCode.js'
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 export function applyRoutes(server: Express): void {
   server.get('/api/appdata', getAppData)

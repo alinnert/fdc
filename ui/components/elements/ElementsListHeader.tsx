@@ -1,12 +1,15 @@
 import classNames from 'classnames'
 import { FC } from 'react'
-import { ElementsResultItem } from '../../../global/ElementsResult.js'
+import {
+  ElementsResultItem,
+  SearchableElementsResultItem,
+} from '../../../global/ElementsResult.js'
 import { Filename } from '../ui/Filename.js'
 import { usePathSegments } from '../ui/usePathSegments.js'
 
 interface Props {
   filePath: string
-  results: ElementsResultItem[]
+  results: ElementsResultItem[] | SearchableElementsResultItem[]
 }
 
 export const ElementsListHeader: FC<Props> = ({ filePath, results }) => {
