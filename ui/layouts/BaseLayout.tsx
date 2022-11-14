@@ -11,7 +11,7 @@ export const BaseLayout: FC = () => {
         <AppHeader />
       </Suspense>
 
-      <div className="grid grid-cols-[700px,1px,1fr] overflow-hidden">
+      <div className="row-start-2 grid grid-cols-[700px,1px,1fr] overflow-hidden">
         <Suspense fallback={<EmptyIndicator content="Loading elements..." />}>
           <ElementsList />
         </Suspense>
