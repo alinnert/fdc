@@ -56,12 +56,7 @@ export async function grep({
     ])
 
     rg.stdout.on('data', (data: Buffer) => {
-      let lines: string[] = []
-      try {
-        lines = data.toString().split('\n')
-      } catch (error) {
-        console.log(error)
-      }
+      const lines = data.toString().split('\n')
 
       for (const line of lines) {
         if (line.trim() === '') continue
