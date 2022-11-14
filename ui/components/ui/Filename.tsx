@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { FC, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { endpoint } from '../../lib/api.js'
+import { normalizePath } from '../../lib/path.js'
 import { appDataState } from '../../states/appDataStates.js'
 
 interface Props {
@@ -21,13 +22,25 @@ export const Filename: FC<Props> = ({
 
   const filePath = useMemo<string>(() => {
     return lineNumber !== undefined
-      ? `${path.replace('\\', '/')}/${filename}:${lineNumber}`
-      : `${path.replace('\\', '/')}/${filename}`
+      ? `${normalizePath(path)}/${filename}:${lineNumber}`
+      : `${normalizePath(path)}/${filename}`
   }, [filename, lineNumber, path])
 
   const tooltipMessage = useMemo<string>(() => {
     return `Open in VS Code: ${filePath}`
   }, [filePath])
+
+  const basePath =
+    appData.status === 'ok'
+      ? normalizePath(path).replace(normalizePath(appData.data.basePath), '')
+      : ''
+
+  if (appData.status === 'ok') {
+    console.log('================================')
+    console.log(path)
+    console.log(appData.data.basePath)
+    console.log(path.startsWith(appData.data.basePath))
+  }
 
   function handleFilenameClick(): void {
     const body = { file: filePath }
@@ -46,7 +59,10 @@ export const Filename: FC<Props> = ({
       <div className="flex items-center text-xs">
         {appData.status === 'ok' ? (
           <>
-            <div title={appData.data.basePath} className="mr-1 text-neutral-400">
+            <div
+              title={appData.data.basePath}
+              className="mr-1 text-neutral-400"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -58,11 +74,11 @@ export const Filename: FC<Props> = ({
             </div>
 
             <span className="text-neutral-500">
-              {path.replace(appData.data.basePath, '')}/
+              {basePath}/
               <span
                 className={classNames(
                   'cursor-pointer',
-                  'font-sm font-bold text-black hover:text-brand-600',
+                  'font-sm hover:text-brand-600 font-bold text-black',
                 )}
                 onClick={handleFilenameClick}
                 title={tooltipMessage}
