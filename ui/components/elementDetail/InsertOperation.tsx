@@ -12,7 +12,7 @@ export const InsertOperation: FC<Props> = ({ insertOperation }) => {
 
   return (
     <div className="my-2">
-      <div className="mb-1 px-4 font-mono font-semibold text-orange-700">
+      <div className="text-orange-700 mb-1 px-4 font-mono font-semibold">
         {insertOperation.operationName}
       </div>
 

@@ -10,7 +10,7 @@ export const EmptyIndicator: FC<Props> = ({ content, icon }) => {
     <div className="grid h-full grid-rows-[1fr,auto,auto,1fr] items-center justify-center">
       <div></div>
       <div className="mb-2 flex justify-center text-neutral-400">{icon}</div>
-      <div className="text-neutral-600 text-lg">{content}</div>
+      <div className="text-lg text-neutral-600">{content}</div>
     </div>
   )
 }

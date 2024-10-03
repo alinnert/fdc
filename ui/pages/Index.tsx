@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { EmptyIndicator } from '../components/ui/EmptyIndicator.js'
 
-export const Index: FC = ({}) => {
+export const Index: FC = () => {
   return (
     <EmptyIndicator
       content="Select an element."

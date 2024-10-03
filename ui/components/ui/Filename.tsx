@@ -71,7 +71,7 @@ export const Filename: FC<Props> = ({
               <span
                 className={classNames(
                   'cursor-pointer',
-                  'font-sm hover:text-brand-600 font-bold text-black',
+                  'font-sm font-bold text-black hover:text-brand-600',
                 )}
                 onClick={handleFilenameClick}
                 title={tooltipMessage}

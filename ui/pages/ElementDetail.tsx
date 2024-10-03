@@ -8,7 +8,7 @@ import { IconButton } from '../components/ui/IconButton.js'
 import { ToolbarContainer } from '../components/ui/ToolbarContainer.js'
 import { elementPathState } from '../states/elementDetailStates.js'
 
-export const ElementDetail: FC = ({}) => {
+export const ElementDetail: FC = () => {
   const navigate = useNavigate()
   const params = useParams()
   const [elementPath, setElementPath] = useRecoilState(elementPathState)

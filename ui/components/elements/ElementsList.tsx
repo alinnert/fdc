@@ -6,7 +6,7 @@ import { elementDetailState } from '../../states/elementDetailStates.js'
 import { elementsCountState } from '../../states/elementsStates.js'
 import {
   filteredElementsCountState,
-  filteredElementsState
+  filteredElementsState,
 } from '../../states/filterStates.js'
 import { FilterInput } from '../filter/FilterInput.js'
 import { ButtonRow } from '../ui/ButtonRow.js'
